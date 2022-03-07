@@ -1,7 +1,7 @@
 import de.bezier.guido.*;
 //Declare and initialize constants NUM_ROWS and NUM_COLS = 20
-public static final int NUM_ROWS = 20;
-public static final int NUM_COLS = 20;
+public static final int NUM_ROWS = 10;
+public static final int NUM_COLS = 10;
 private MSButton[][] buttons;//2d array of minesweeper buttons
 private ArrayList <MSButton> mines = new ArrayList<MSButton>();  //ArrayList of just the minesweeper buttons that are mined
 boolean isLost;
@@ -22,7 +22,7 @@ void setup ()
 }
 public void setMines()
 {
-  for(int i = 0;i < 40; i++){
+  for(int i = 0;i < 15; i++){
   int row = (int)(Math.random()*NUM_ROWS);
   int col = (int)(Math.random()*NUM_COLS);
   if (!mines.contains(buttons[row][col]))
@@ -33,8 +33,6 @@ public void setMines()
 public void draw ()
 {
   background( 0 );
-  System.out.println(isWon());
-  System.out.println(mines);
   if (isWon()== true)
     displayWinningMessage();
   else
@@ -66,7 +64,6 @@ public boolean isWon()
   } else {
     minesFlagged= true;
   }
-  System.out.println(sumNotClicked);
   if (sumNotClicked == mines.size() && minesFlagged == true) { 
     return true;
   } else 
@@ -111,7 +108,6 @@ public int countMines(int row, int col)
     if (isValid(row+1, i)==true && mines.contains(buttons[row+1][i]))      
       numMines = numMines+1;
   }
-  System.out.println(numMines);
   return numMines;
 }
 public class MSButton
@@ -144,7 +140,8 @@ public class MSButton
     } else if (mouseButton == RIGHT && flagged == false) {
       flagged = !flagged;
       clicked = false;
-    } else if (clicked && mines.contains(this)) {
+    } 
+    else if (clicked && mines.contains(this)) {
       displayLosingMessage();
     } else if (countMines(myRow, myCol) > 0)
       myLabel = countMines(myRow, myCol)+ "";
@@ -171,11 +168,11 @@ public class MSButton
       fill(0);
     else if ( clicked && mines.contains(this) ) {
       isLost = true;
-      fill(255, 0, 0);
+      fill(135, 206, 235);
     } else if (clicked)
       fill(255,192,203);
     else
-      fill(197,199,196 );
+      fill(204,169,221);
 
     rect(x, y, width, height);
     fill(0);
