@@ -1,54 +1,4 @@
-import de.bezier.guido.*;
-//Declare and initialize constants NUM_ROWS and NUM_COLS = 20
-public static final int NUM_ROWS = 10;
-public static final int NUM_COLS = 10;
-private MSButton[][] buttons;//2d array of minesweeper buttons
-private ArrayList <MSButton> mines = new ArrayList<MSButton>();  //ArrayList of just the minesweeper buttons that are mined
-boolean isLost;
-
-void setup ()
-{
-  size(400, 400);
-  textAlign(CENTER, CENTER);
-
-  // make the manager
-  Interactive.make( this );
-
-  buttons = new MSButton[NUM_ROWS][NUM_COLS];
-  for (int r = 0; r < buttons.length; r++)
-    for (int c = 0; c< buttons[0].length; c++)
-      buttons[r][c]= new MSButton(r, c);
-  setMines();
-}
-public void setMines()
-{
-  for(int i = 0;i < 15; i++){
-  int row = (int)(Math.random()*NUM_ROWS);
-  int col = (int)(Math.random()*NUM_COLS);
-  if (!mines.contains(buttons[row][col]))
-    mines.add(buttons[row][col]);
-  }
-}
-
-public void draw ()
-{
-  background( 0 );
-  if (isWon()== true)
-    displayWinningMessage();
-  else
-    displayLosingMessage();
-}
-public boolean isWon()
-{
-  int sumNotClicked = 0;
-  for (int r = 0; r < buttons.length; r++) {
-    for (int c = 0; c< buttons[0].length; c++) {
-      if (buttons[r][c].clicked == false)
-        sumNotClicked++;
-    }
-  }
-  boolean minesFlagged;
-  ArrayList<Boolean>win = new ArrayList<Boolean>();
+ArrayList<Boolean>win = new ArrayList<Boolean>();
   int sum = 0;
   // checks if all the mines are flagged
   for (int i = 0; i < mines.size(); i++)
@@ -165,7 +115,7 @@ public class MSButton
   public void draw ()
   {    
     if (flagged)
-      fill(0);
+      fill(144,238,144);
     else if ( clicked && mines.contains(this) ) {
       isLost = true;
       fill(135, 206, 235);
