@@ -124,26 +124,29 @@ public class MSButton
       clicked = false;
     } else if (mouseButton == RIGHT && flagged == false) {
       flagged = !flagged;
+      clicked = false;
     } else if (clicked && mines.contains(this)) {
       displayLosingMessage();
     } else if (countMines(myRow, myCol) > 0)
       myLabel = countMines(myRow, myCol)+ "";
-    else if (isValid(myRow, myCol-1) && buttons[myRow][myCol-1].clicked == false)
+    else {
+      if(isValid(myRow, myCol-1) && buttons[myRow][myCol-1].clicked == false)
       buttons[myRow][myCol-1].mousePressed();
-    else if (isValid(myRow, myCol+1) && buttons[myRow][myCol+1].clicked == false)
+    if (isValid(myRow, myCol+1) && buttons[myRow][myCol+1].clicked == false)
       buttons[myRow][myCol+1].mousePressed();
-    else if (isValid(myRow+1, myCol) && buttons[myRow+1][myCol].clicked == false)
+    if (isValid(myRow+1, myCol) && buttons[myRow+1][myCol].clicked == false)
       buttons[myRow+1][myCol].mousePressed();
-    else if (isValid(myRow+1, myCol-1) && buttons[myRow+1][myCol-1].clicked == false)
+    if (isValid(myRow+1, myCol-1) && buttons[myRow+1][myCol-1].clicked == false)
       buttons[myRow+1][myCol-1].mousePressed();
-    else if (isValid(myRow+1, myCol+1) && buttons[myRow+1][myCol+1].clicked == false)
+    if (isValid(myRow+1, myCol+1) && buttons[myRow+1][myCol+1].clicked == false)
       buttons[myRow+1][myCol+1].mousePressed();
-    else if (isValid(myRow-1, myCol-1) && buttons[myRow-1][myCol-1].clicked == false)
+    if (isValid(myRow-1, myCol-1) && buttons[myRow-1][myCol-1].clicked == false)
       buttons[myRow-1][myCol-1].mousePressed();
-    else if (isValid(myRow-1, myCol) && buttons[myRow-1][myCol].clicked == false)
+    if (isValid(myRow-1, myCol) && buttons[myRow-1][myCol].clicked == false)
       buttons[myRow][myCol-1].mousePressed();
-    else if (isValid(myRow-1, myCol+1) && buttons[myRow-1][myCol+1].clicked == false)
+    if (isValid(myRow-1, myCol+1) && buttons[myRow-1][myCol+1].clicked == false)
       buttons[myRow-1][myCol+1].mousePressed();
+    }
   }
   public void draw ()
   {    
